@@ -24,10 +24,10 @@ $npm run dev
 
 ```
 $npm i -g contentful-cli
-$ contentful login
+$contentful login #ウェブブラウザで開くので、ログインしてください
 $contentful space create --name 'my-blog'
 $contentful space use
-$ contentful space seed --template blog
+$contentful space seed --template blog
 $npm install --save contentful
 $npm install --save vue-markdown
 $npm install --save-dev push-dir
@@ -51,21 +51,66 @@ $npm install --save-dev push-dir
     <nav class="nav has-shadow">
       <div class="container">
         <div class="nav-left">
-          <nuxt-link to="/" class="nav-item">
-            Awesome JS SSR Blog!
-          </nuxt-link>
+          <nuxt-link to="/" class="nav-item">Awesome JS SSR Blog!</nuxt-link>
           <nuxt-link active-class="is-active" to="/" class="nav-item is-tab" exact>Home</nuxt-link>
           <nuxt-link active-class="is-active" to="/about" class="nav-item is-tab" exact>About</nuxt-link>
         </div>
       </div>
     </nav>
     <!-- /navigation -->
-
-    <!-- displays the page component -->
     <nuxt/>
-
   </div>
 </template>
+
+<style>
+html {
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.button--green {
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid #3b8070;
+  color: #3b8070;
+  text-decoration: none;
+  padding: 10px 30px;
+}
+
+.button--green:hover {
+  color: #fff;
+  background-color: #3b8070;
+}
+
+.button--grey {
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid #35495e;
+  color: #35495e;
+  text-decoration: none;
+  padding: 10px 30px;
+  margin-left: 15px;
+}
+
+.button--grey:hover {
+  color: #fff;
+  background-color: #35495e;
+}
+</style>
 ```
 
 - ブログの TOP ページを作成する
@@ -160,6 +205,7 @@ module.exports = {
 特にここでハマりました。Qita 記事の通りにコードを持ってきて、貼り付けると Developer Tool でエラーとなりました。
 エラーとはなりますが、ページは表示されます。しかし、後の詳細記事ページの作成の際にうまく行きませんでした。
 （原因が分かりませんでしたが...m(\_)m）ファイル保存時の自動補完機能でうまく行きました。
+おそらく、最後の行に改行がなかったのかもしれません。
 
 また、アプリケーションのベース URL を設定した際に、エラーが出たので、今回は省略しています。時間が足りず、ルーティング設計は自動で任せてしまってます。
 
@@ -450,6 +496,10 @@ export default {
 ブランチをデプロイする： master もしくはデプロイしたいブランチ
 ビルドコマンド： npm run generate
 公開ディレクトリ： dist
+
+# (補足)記事を追加する
+
+contentful にログインし、上部の content タブをクリックした後、右上にある、「Add entry」から追加できます。
 
 # References
 

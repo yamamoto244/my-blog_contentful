@@ -5,6 +5,7 @@
         <div class="container">
           <h1 class="title">Welcome to the JavaScript SSR Blog.</h1>
           <h2 class="subtitle">Hope you find something you like.</h2>
+          <h1>{{ person.fields.name }}</h1>
         </div>
       </div>
     </section>
@@ -30,34 +31,20 @@ export default {
       posts: []
     };
   },
-  // asyncData({ env }) {
-  //   return Promise.all([
-  //     client.getEntries({
-  //       "sys.id": env.CTF_PERSON_ID
-  //     }),
-  //     client.getEntries({
-  //       content_type: env.CTF_BLOG_POST_TYPE_ID,
-  //       order: "-sys.createdAt"
-  //     })
-  //   ])
-  //     .then(([entries, posts]) => {
-  //       return {
-  //         person: entries.items[0],
-  //         posts: posts.items
-  //       };
-  //     })
-  //     .catch(console.error);
-  // }
   asyncData({ env }) {
-    return client
-      .getEntries({
+    return Promise.all([
+      client.getEntries({
+        "sys.id": env.CTF_PERSON_ID
+      }),
+      client.getEntries({
         content_type: env.CTF_BLOG_POST_TYPE_ID,
-        order: "-fields.publishDate",
-        limit: 4
+        order: "-sys.createdAt"
       })
-      .then(entries => {
+    ])
+      .then(([entries, posts]) => {
         return {
-          posts: entries.items
+          person: entries.items[0],
+          posts: posts.items
         };
       })
       .catch(console.error);

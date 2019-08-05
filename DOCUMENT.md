@@ -497,6 +497,8 @@ export default {
 ビルドコマンド： npm run generate
 公開ディレクトリ： dist
 
+Contentful と Netlify の Webhook 連携
+
 # (補足)記事を追加する
 
 contentful にログインし、上部の content タブをクリックした後、右上にある、「Add entry」から追加できます。

@@ -498,6 +498,10 @@ export default {
 公開ディレクトリ： dist
 
 Contentful と Netlify の Webhook 連携
+netlify の Deploy 設定で Build hooks の設定を行う。
+設定が完了すると Web hooks の情報が記載されます
+先ほど、記載されている Webhook URL を Contentful の管理画面で Webhook の設定をします。
+Settings > Webhooks で移動し、画面右側の Netlify を選択します。そこで先ほどの Webhook URL をコピペし create webhook のボタンを押せば終わりです。
 
 # (補足)記事を追加する
 

@@ -1,4 +1,9 @@
+const contentful = require('contentful');
 const config = require('./.contentful.json');
+const client = contentful.createClient({
+  space: config.CTF_SPACE_ID,
+  accessToken: config.CTF_CDA_ACCESS_TOKEN
+});
 
 module.exports = {
   /*
@@ -15,6 +20,17 @@ module.exports = {
           'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.min.css'
       }
     ]
+  },
+  generate: {
+    routes() {
+      return client
+        .getEntries({
+          content_type: config.CTF_BLOG_POST_TYPE_ID
+        })
+        .then(entries => {
+          return [...entries.items.map(entry => `/${entry.fields.slug}`)];
+        });
+    }
   },
   // ...
   env: {
